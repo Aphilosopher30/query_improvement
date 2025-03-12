@@ -10,7 +10,7 @@ class RequestController < ApplicationController
   private
 
   def chat_with_gpt(question)
-    # binding.pry
+
     api_key = ENV['gpt_key']
     response = HTTP.post(
       "https://api.openai.com/v1/chat/completions",
@@ -19,14 +19,10 @@ class RequestController < ApplicationController
         "Content-Type" => "application/json"
       },
       json: {
-        model: "o1-mini",
+        model: "gpt-3.5-turbo",
         messages: [{ role: "user", content: question }]
       }
     )
-
-    puts "Response status: #{response.status}"
-    puts "Response body: #{response.body}"
-
 
     json_response = response.parse
     json_response.dig("choices", 0, "message", "content") || "No response"
