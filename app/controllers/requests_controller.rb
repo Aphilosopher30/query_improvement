@@ -2,7 +2,7 @@ class RequestsController < ApplicationController
   require 'http'
 
   def input
-  end 
+  end
 
 
   def ask
@@ -10,6 +10,11 @@ class RequestsController < ApplicationController
     response = chat_with_gpt(question)
     render json: { question: question, answer: response }
   end
+
+  def input
+    
+  end
+
 
   private
 
