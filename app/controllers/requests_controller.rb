@@ -1,5 +1,9 @@
-class RequestController < ApplicationController
+class RequestsController < ApplicationController
   require 'http'
+
+  def input
+  end 
+
 
   def ask
     question = params[:question]
