@@ -2,13 +2,14 @@ class RequestController < ApplicationController
   require 'http'
 
   def ask
-    question = params[:question] #{}"tell me in one sentence what a good." #params[:question]
+    question = params[:question]
     response = chat_with_gpt(question)
     render json: { question: question, answer: response }
   end
 
   private
 
+  #Future Task: abstract out the api call
   def chat_with_gpt(question)
 
     api_key = ENV['gpt_key']
