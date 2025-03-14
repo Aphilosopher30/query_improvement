@@ -4,17 +4,22 @@ class RequestsController < ApplicationController
   def input
   end
 
-
   def ask
-    question = params[:question]
-    response = chat_with_gpt(question)
+
+    ask_for_improvement = "Evaluate the clarity, precision, and AI optimization of the following prompt. Identify weaknesses in specificity, structure, and effectiveness. Then, rewrite it for improved clarity, conciseness, and its ability to generate structured, informative, and relevant AI responses. Output only the revised prompt.       "
+
+    question =  params[:question]
+    prompt = ask_for_improvement + question
+
+    imrpved_prompt = chat_with_gpt(prompt)
+
+    response = chat_with_gpt(imrpved_prompt)
     render json: { question: question, answer: response }
   end
 
   def input
-    
-  end
 
+  end
 
   private
 
